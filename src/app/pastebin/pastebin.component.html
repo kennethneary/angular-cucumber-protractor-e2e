@@ -1,0 +1,28 @@
+<div class="pastebin">
+  <table id="table" class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Language</th>
+        <th>Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paste of pastebin">
+        <td>{{ paste.id }}</td>
+        <td>{{ paste.title }}</td>
+        <td>{{ paste.language }}</td>
+        <td>
+          <app-view-paste
+            [paste]="paste"
+            (updatePasteSuccess)="onUpdatePaste($event)"
+            (deletePasteSuccess)="onDeletePaste($event)">
+          </app-view-paste>
+        </td>
+      </tr>
+    </tbody>
+    <app-add-paste (addPasteSuccess)="onAddPaste($event)"></app-add-paste>
+  </table>
+</div>
+
