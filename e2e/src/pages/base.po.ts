@@ -34,6 +34,30 @@ export class Base {
     return element(by.name('paste'));
   }
 
+  getHomeTab(): ElementFinder {
+    return element(by.cssContainingText('.nav-link', 'Pastebin Home'));
+  }
+
+  getAboutTab(): ElementFinder {
+    return element(by.cssContainingText('.nav-link', 'About Pastebin'));
+  }
+
+  getContactTab(): ElementFinder {
+    return element(by.css('a[routerLink="/contact"]'));
+  }
+
+  isHomeTabPresent(): promise.Promise<boolean> {
+    return this.getHomeTab().isPresent();
+  }
+
+  isAboutTabPresent(): promise.Promise<boolean> {
+    return this.getAboutTab().isPresent();
+  }
+
+  isContactTabPresent(): promise.Promise<boolean> {
+    return this.getContactTab().isPresent();
+  }
+
   /* Mock data for creating a new Paste and editing existing paste */
   getMockPaste(): any {
     let paste: any = {

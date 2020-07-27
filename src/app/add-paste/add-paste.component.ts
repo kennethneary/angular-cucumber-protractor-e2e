@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Pastebin } from '../pastebin';
 import { PastebinService } from '../pastebin.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CreateModelComponent } from '../model/create/create.component';
+import { CreateModalComponent } from '../modal/create/create.component';
 
 @Component({
   selector: 'app-add-paste',
@@ -16,7 +16,7 @@ export class AddPasteComponent implements OnInit {
   ngOnInit() {  }
 
   createPaste() {
-    const modalRef = this.modalService.open(CreateModelComponent);
+    const modalRef = this.modalService.open(CreateModalComponent);
     modalRef.result.then(result => this.onSave(result));
   }
 

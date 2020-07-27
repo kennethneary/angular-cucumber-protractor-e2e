@@ -39,6 +39,7 @@ export class ViewPasteComponent implements OnInit {
   }
 
   public onClose() {
+    this.editEnabled = false;
     this.showPasteModal = false;
   }
 

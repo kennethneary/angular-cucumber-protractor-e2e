@@ -4,11 +4,11 @@ import { Languages } from '../../pastebin';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-model-create',
+  selector: 'app-modal-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreateModelComponent {
+export class CreateModalComponent {
   readonly languages: string[] = Languages;
 
   myForm: FormGroup;

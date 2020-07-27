@@ -12,7 +12,7 @@ import { ViewPasteComponent } from './view-paste/view-paste.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 
-import { CreateModelComponent } from './model/create/create.component';
+import { CreateModalComponent } from './modal/create/create.component';
 
 
 //In memory Web api to simulate an http server
@@ -27,7 +27,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
     ViewPasteComponent,
     AboutComponent,
     ContactComponent,
-    CreateModelComponent,
+    CreateModalComponent,
   ],
   imports: [
     BrowserModule,

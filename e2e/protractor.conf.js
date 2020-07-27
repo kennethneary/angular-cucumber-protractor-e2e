@@ -22,8 +22,7 @@ exports.config = {
   frameworkPath: require.resolve("protractor-cucumber-framework"),
   cucumberOpts: {
     require: ["./src/steps/**/*.steps.ts", "./src/hooks/**/*.ts"],
-    format: "json:./reports/json/cucumber_report.json",
-    tags: "@WIP"
+    format: "json:./reports/json/cucumber_report.json"
   },
   onPrepare() {
     require("ts-node").register({

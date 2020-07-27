@@ -27,7 +27,7 @@ export class ViewPaste extends Base {
 
   /* View Paste Modal window */
   getViewPasteModal(): ElementFinder {
-    return this.getIndividualPaste().element(by.id('source-modal'));
+    return this.getIndividualPaste().element(by.id('viewModal'));
   }
 
   isViewPasteModalPresent(): promise.Promise<boolean> {
@@ -36,7 +36,7 @@ export class ViewPaste extends Base {
 
   /*Close button*/
   getCloseButton(): ElementFinder {
-    return this.getIndividualPaste().element(by.buttonText('Close'));
+    return this.getViewPasteModal().element(by.buttonText('Close'));
   }
 
   clickCloseButton(): promise.Promise<void> {
@@ -45,7 +45,7 @@ export class ViewPaste extends Base {
 
   /* Edit button */
   getEditButton(): ElementFinder {
-    return this.getIndividualPaste().element(by.buttonText('Edit Paste'));
+    return this.getViewPasteModal().element(by.buttonText('Edit Paste'));
   }
 
   clickEditButton(): promise.Promise<void> {
@@ -54,7 +54,7 @@ export class ViewPaste extends Base {
 
   /* Save button */
   getSaveButton(): ElementFinder {
-    return this.getIndividualPaste().element(by.buttonText('Save Paste'));
+    return this.getViewPasteModal().element(by.buttonText('Save Paste'));
   }
 
   clickSaveButton(): promise.Promise<void> {
@@ -63,7 +63,7 @@ export class ViewPaste extends Base {
 
   /* Delete button */
   getDeleteButton(): ElementFinder {
-    return this.getIndividualPaste().element(by.buttonText('Delete Paste'));
+    return this.getViewPasteModal().element(by.buttonText('Delete Paste'));
   }
 
   clickDeleteButton(): promise.Promise<void> {
@@ -71,26 +71,46 @@ export class ViewPaste extends Base {
   }
 
   /*Retrieving Paste data from Modal window */
-  getTitle(): ElementFinder {
-    return this.getIndividualPaste().element(by.className('modal-title'));
+  getViewable(): ElementFinder {
+    return this.getViewPasteModal().element(by.css('.viewable'));
   }
 
-  getLanguage(): ElementFinder {
-    return this.getIndividualPaste().element(by.className('modal-language'));
+  getEditable(): ElementFinder {
+    return this.getViewPasteModal().element(by.css('.editable'));
   }
 
-  getPaste(): ElementFinder {
-    return this.getIndividualPaste().element(by.className('modal-paste'));
+  getViewTitle(): ElementFinder {
+    return this.getViewable().element(by.className('modal-title'));
   }
 
-  async getPasteDataFromModal(): Promise<string[]> {
-    //The Paste data values is returned when all the promises are resolved
-    const allData = await Promise.all([
-      this.getTitle().getText(),
-      this.getLanguage().getText(),
-      this.getPaste().getText(),
+  getViewLanguage(): ElementFinder {
+    return this.getViewable().element(by.className('modal-language'));
+  }
+
+  getViewPaste(): ElementFinder {
+    return this.getViewable().element(by.className('modal-paste'));
+  }
+
+  getEditTitle(): ElementFinder {
+    return this.getEditable().element(by.className('modal-title'));
+  }
+
+  getEditLanguage(): ElementFinder {
+    return this.getEditable().element(by.className('modal-language'));
+  }
+
+  getEditPaste(): ElementFinder {
+    return this.getEditable().element(by.className('modal-paste'));
+  }
+
+  async getPasteViewDataFromModal(): Promise<string[]> {
+    const result = await Promise.all([
+      this.getViewTitle().getText(),
+      this.getViewLanguage().getText(),
+      this.getViewPaste().getText(),
     ]);
-    return allData.map(value => (value = value.replace(/\s/g, '')));
+
+    return result.map(s => s.trim());
   }
 
   /*Edit Modal window data */

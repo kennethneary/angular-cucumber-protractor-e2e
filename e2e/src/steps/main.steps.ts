@@ -1,20 +1,28 @@
-import { Before, Given, Then, When } from 'cucumber';
+import { Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
 
-import { Base } from '../pages/base.po';
+import { Pastebin } from '../pages/Pastebin.po';
 
-let page: Base;
-
-Before(() => {
-  page = new Base();
-});
+let mainPage: Pastebin = new Pastebin();
 
 Given(/^I am on the home page$/, async () => {
-  await page.navigateToHome();
+  await mainPage.navigateToHome();
 });
 
-When(/^I do nothing$/, () => {});
+Then('all tabs are present', async function () {
+  expect(await mainPage.isHomeTabPresent()).to.be.true;
+  expect(await mainPage.isAboutTabPresent()).to.be.true;
+  expect(await mainPage.isContactTabPresent()).to.be.true;
+});
 
-Then(/^I should see the title$/, async () => {
-  // expect(await page.getTitleText()).to.equal('Welcome to angular-cli-cucumber-demo!');
+Then('table first row contains {string}', async function (string) {
+  expect(await mainPage.getFirstRowData()).to.contain(string);
+});
+
+Then('the table header should contain {string}', async function (string) {
+  expect(await mainPage.getTableHeader()).to.contain(string);
+});
+
+Then('there is an add new button', async function () {
+  expect(await mainPage.isAddPasteTagPresent()).to.be.true;
 });

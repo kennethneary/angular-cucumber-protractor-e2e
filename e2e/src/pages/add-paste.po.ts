@@ -14,7 +14,7 @@ export class AddPaste extends Base {
 
   /* Create Paste button */
   getCreateButton(): ElementFinder {
-    return this.getAddPaste().element(by.buttonText('create Paste'));
+    return this.getAddPaste().element(by.buttonText('Create Paste'));
   }
 
   isCreateButtonPresent(): promise.Promise<boolean> {
@@ -27,7 +27,7 @@ export class AddPaste extends Base {
 
   /*Create Paste Modal */
   getCreatePasteModal(): ElementFinder {
-    return this.getAddPaste().element(by.id('source-modal'));
+    return element(by.css('.create-modal'));
   }
 
   isCreatePasteModalPresent(): promise.Promise<boolean> {
@@ -36,7 +36,7 @@ export class AddPaste extends Base {
 
   /*Save button */
   getSaveButton(): ElementFinder {
-    return this.getAddPaste().element(by.buttonText('Save'));
+    return this.getCreatePasteModal().element(by.buttonText('Save'));
   }
 
   clickSaveButton(): promise.Promise<void> {
@@ -45,7 +45,7 @@ export class AddPaste extends Base {
 
   /*Close button */
   getCloseButton(): ElementFinder {
-    return this.getAddPaste().element(by.buttonText('Close'));
+    return this.getCreatePasteModal().element(by.css('.close'));
   }
 
   clickCloseButton(): promise.Promise<void> {
